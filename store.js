@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux';
 import textReducer from './reducers/textReducer';
+import gamesReducer from './reducers/gamesReducer';
 
 const rootReducer = combineReducers({
-  init: textReducer
+  init: textReducer,
+  games: gamesReducer
 });
 
 const configureStore = () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Input, Text, ThemeProvider} from 'react-native-elements';
+import {Button, Input, ThemeProvider} from 'react-native-elements';
 import {updateText} from '../actions/text';
 import {connect} from 'react-redux';
 
@@ -38,12 +38,13 @@ const mapDispatchToProps = dispatch => {
 
 class Info extends React.Component {
   
+  static navigationOptions = {
+    headerTitle: "Info page"
+  };
+  
   textSubmitHandler = () => {
     if (this.state) {
-      const {text} = this.state;
-      if (text !== '') {
-        this.props.updateText(text);
-      }
+      this.props.updateText(this.state.text);
     }
     this.props.navigation.goBack()
   };
@@ -52,11 +53,10 @@ class Info extends React.Component {
     const { text } = this.props;
     return (
       <ThemeProvider theme={theme}>
-        <Text>
-          {text}
-        </Text>
         <Input
-          onChangeText={text => this.setState({ text: text })} />
+          onChangeText={text => this.setState({ text: text })}>
+          {text}
+        </Input>
         <Button title = 'Home'
                 onPress = {() => this.textSubmitHandler()}
         />
